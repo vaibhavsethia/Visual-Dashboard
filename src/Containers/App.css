@@ -1,0 +1,74 @@
+.Head-text{
+  color:#324396;
+}
+
+.Head-logo{
+  height: 70px;
+  width: 120px;
+}
+
+.Head{
+  border-bottom-color: #324396;
+  border-bottom-width: 2px ;
+  border-bottom-style: solid ;
+  padding-bottom: 60px
+}
+
+.Footer{
+  background-color: #324396 ;
+  border:2px solid #2f3e8a;
+}
+
+.SecondNav{
+  background-color: #324396 ;
+  border:2px solid #2f3e8a;
+}
+
+.SecondNav-anchors{
+  width: 200px;
+}
+
+.SecondNav-anchors:hover{
+  transform: scale(1.1);
+}
+
+.Home-img:hover{
+  transform: scale(1.05);
+}
+
+.Home-key{
+  margin-top: 90px;;
+  border: 1px solid black;
+}
+
+.Home-key-box{
+  margin-left: 45px;
+  float: left;
+  height: 20px;
+  width: 20px;
+  border: 1px solid black;
+  clear: both;
+  margin-right: 5px;
+}
+.Home-key-box-one{
+  background-color: #4f72db;
+}
+.Home-key-box-two{
+  background-color: #2a56db;
+}
+.Home-key-box-three{
+  background-color: #063ad6 ;
+}
+.Home-key-box-four{
+  background-color: #0731ad;
+}
+.Home-key-box-five{
+  background-color: #04278f;
+}
+.Home-key-box-six{
+  background-color: #031b61;
+}
+
+.Key-hover:hover{
+  transform: scale(1.1);
+}
