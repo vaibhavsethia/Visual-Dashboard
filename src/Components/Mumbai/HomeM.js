@@ -136,7 +136,7 @@ export class HomeM extends Component {
                                                                                 />
                                                                                 <VictoryBar
                                                                                 data={data}
-                                                                                barWidth={({ index }) => 5}
+                                                                                barWidth={({ index }) => 7}
                                                                                 x="Utility"
                                                                                 y="Usage"
                                                                                 />

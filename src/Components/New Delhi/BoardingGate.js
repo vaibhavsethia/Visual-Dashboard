@@ -20,12 +20,12 @@ export class BoardingGate extends Component {
     render() {
         const {Total,Gate1,Gate2,Gate3,Gate4,Gate5,Gate6}=this.state;
         const data = [
-            {x: parseFloat(Gate1*100/Total).toFixed(2) , y: parseInt(Gate1)},
-            {x: parseFloat(Gate2*100/Total).toFixed(2) , y: parseInt(Gate2)},
-            {x: parseFloat(Gate3*100/Total).toFixed(2) , y: parseInt(Gate3)},
-            {x: parseFloat(Gate4*100/Total).toFixed(2) , y: parseInt(Gate4)},
-            {x: parseFloat(Gate5*100/Total).toFixed(2) , y: parseInt(Gate5)},
-            {x: parseFloat(Gate6*100/Total).toFixed(2) , y: parseInt(Gate6)},
+            {x: parseFloat(Gate1*100/Total).toFixed(2) , y: parseInt(Gate1),label:Gate1+"M"},
+            {x: parseFloat(Gate2*100/Total).toFixed(2) , y: parseInt(Gate2),label:Gate2+"M"},
+            {x: parseFloat(Gate3*100/Total).toFixed(2) , y: parseInt(Gate3),label:Gate3+"M"},
+            {x: parseFloat(Gate4*100/Total).toFixed(2) , y: parseInt(Gate4),label:Gate4+"M"},
+            {x: parseFloat(Gate5*100/Total).toFixed(2) , y: parseInt(Gate5),label:Gate5+"M"},
+            {x: parseFloat(Gate6*100/Total).toFixed(2) , y: parseInt(Gate6),label:Gate6+"M"},
           ];
         return (
             <div>

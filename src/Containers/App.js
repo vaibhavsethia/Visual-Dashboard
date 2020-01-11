@@ -17,7 +17,7 @@ export class App extends Component {
   
     this.state = {
       //Data in Million
-       PageState:'IGI',
+       PageState:'HomeN',
        IGI:69,     //New Delhi
        CSMI:48,    //Mumbai
        NSBI:21,    //Kolkata
@@ -42,12 +42,12 @@ export class App extends Component {
     const Total=IGI+CSMI+NSBI+KI+CI+RGI;
     console.log(this.state.PageState);
     const data = [
-        {x: parseFloat(IGI*100/Total).toFixed(2), y: parseFloat(IGI/Total),label:""},
-        {x: parseFloat(CSMI*100/Total).toFixed(2), y: parseFloat(CSMI/Total),label:""},
-        {x: parseFloat(NSBI*100/Total).toFixed(2), y: parseFloat(NSBI/Total),label:""},
-        {x: parseFloat(KI*100/Total).toFixed(2), y: parseFloat(KI/Total),label:""},
-        {x: parseFloat(CI*100/Total).toFixed(2), y: parseFloat(CI/Total),label:""},
-        {x: parseFloat(RGI*100/Total).toFixed(2), y: parseFloat(RGI/Total),label:""}
+        {x: parseFloat(IGI*100/Total).toFixed(2), y: parseFloat(IGI/Total),label:IGI+"M"},
+        {x: parseFloat(CSMI*100/Total).toFixed(2), y: parseFloat(CSMI/Total),label:CSMI+"M"},
+        {x: parseFloat(NSBI*100/Total).toFixed(2), y: parseFloat(NSBI/Total),label:NSBI+"M"},
+        {x: parseFloat(KI*100/Total).toFixed(2), y: parseFloat(KI/Total),label:KI+"M"},
+        {x: parseFloat(CI*100/Total).toFixed(2), y: parseFloat(CI/Total),label:CI+"M"},
+        {x: parseFloat(RGI*100/Total).toFixed(2), y: parseFloat(RGI/Total),label:RGI+"M"}
       ];
     return (
       <div className="">
@@ -183,6 +183,7 @@ export class App extends Component {
                                           <div className="fl w-50 pa3 f4 Home-event">
                                               <VictoryPie 
                                                   data={data} 
+                                                  //dataComponent={<Slice events={{ onClick: handleClick }}/>}
                                                   animate={{
                                                       duration: 2000,
                                                       onLoad: { duration: 1000 }

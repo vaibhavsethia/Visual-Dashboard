@@ -34,16 +34,16 @@ export class BaggageBelt extends Component {
     render() {
         const {Total,Belt1,Belt2,Belt3,Belt4,Belt5,Belt6,Belt7,Belt8,Belt9,Belt10,UtilBelt1,UtilBelt2,UtilBelt3,UtilBelt4,UtilBelt5,UtilBelt6,UtilBelt7,UtilBelt8,UtilBelt9,UtilBelt10}=this.state;
         const data1 = [
-            {x: parseFloat(Belt1*100/Total).toFixed(2) , y: parseInt(Belt1)},
-            {x: parseFloat(Belt2*100/Total).toFixed(2) , y: parseInt(Belt2)},
-            {x: parseFloat(Belt3*100/Total).toFixed(2) , y: parseInt(Belt3)},
-            {x: parseFloat(Belt4*100/Total).toFixed(2) , y: parseInt(Belt4)},
-            {x: parseFloat(Belt5*100/Total).toFixed(2) , y: parseInt(Belt5)},
-            {x: parseFloat(Belt6*100/Total).toFixed(2) , y: parseInt(Belt6)},
-            {x: parseFloat(Belt7*100/Total).toFixed(2) , y: parseInt(Belt7)},
-            {x: parseFloat(Belt8*100/Total).toFixed(2) , y: parseInt(Belt8)},
-            {x: parseFloat(Belt9*100/Total).toFixed(2) , y: parseInt(Belt9)},
-            {x: parseFloat(Belt10*100/Total).toFixed(2) , y: parseInt(Belt10)},
+            {x: parseFloat(Belt1*100/Total).toFixed(2) , y: parseInt(Belt1),label:Belt1+"M"},
+            {x: parseFloat(Belt2*100/Total).toFixed(2) , y: parseInt(Belt2),label:Belt2+"M"},
+            {x: parseFloat(Belt3*100/Total).toFixed(2) , y: parseInt(Belt3),label:Belt3+"M"},
+            {x: parseFloat(Belt4*100/Total).toFixed(2) , y: parseInt(Belt4),label:Belt4+"M"},
+            {x: parseFloat(Belt5*100/Total).toFixed(2) , y: parseInt(Belt5),label:Belt5+"M"},
+            {x: parseFloat(Belt6*100/Total).toFixed(2) , y: parseInt(Belt6),label:Belt6+"M"},
+            {x: parseFloat(Belt7*100/Total).toFixed(2) , y: parseInt(Belt7),label:Belt7+"M"},
+            {x: parseFloat(Belt8*100/Total).toFixed(2) , y: parseInt(Belt8),label:Belt8+"M"},
+            {x: parseFloat(Belt9*100/Total).toFixed(2) , y: parseInt(Belt9),label:Belt9+"M"},
+            {x: parseFloat(Belt10*100/Total).toFixed(2) , y: parseInt(Belt10),label:Belt10+"M"},
           ];
           const data2 = [
             {Utilization: parseFloat(UtilBelt1*100/Total).toFixed(2) , Belt: parseInt(UtilBelt1)},

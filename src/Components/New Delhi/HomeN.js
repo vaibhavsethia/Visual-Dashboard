@@ -18,7 +18,7 @@ export class HomeN extends Component {
     
         this.state = {
              //Data in Million
-            PageState:'Boarding', 
+            PageState:'Home', 
             Total:69,
             BoardingGateNum:69,
             ATMNum:28,
@@ -41,16 +41,16 @@ export class HomeN extends Component {
     render() {
         const {Total,BoardingGateNum,ATMNum,BaggageBeltNum,EateriesNum,LoungesNum,ParkingNum,ShoppingNum,TrolleysNum,VendingNum,WashroomNum}=this.state;
         const data = [
-            {Utility: 1, Usage: parseInt(ATMNum)},
-            {Utility: 2, Usage: parseInt(BoardingGateNum)},
-            {Utility: 3, Usage: parseInt(BaggageBeltNum)},
-            {Utility: 4, Usage: parseInt(EateriesNum)},
-            {Utility: 5, Usage: parseInt(LoungesNum)},
-            {Utility: 6, Usage: parseInt(ParkingNum)},
-            {Utility: 7, Usage: parseInt(ShoppingNum)},
-            {Utility: 8, Usage: parseInt(TrolleysNum)},
-            {Utility: 9, Usage: parseInt(VendingNum)},
-            {Utility: 10, Usage: parseInt(WashroomNum)},
+            {Utility: 1, Usage: parseInt(ATMNum),label:ATMNum+"M"},
+            {Utility: 2, Usage: parseInt(BoardingGateNum),label:BoardingGateNum+"M"},
+            {Utility: 3, Usage: parseInt(BaggageBeltNum),label:BaggageBeltNum+"M"},
+            {Utility: 4, Usage: parseInt(EateriesNum),label:EateriesNum+"M"},
+            {Utility: 5, Usage: parseInt(LoungesNum),label:LoungesNum+"M"},
+            {Utility: 6, Usage: parseInt(ParkingNum),label:ParkingNum+"M"},
+            {Utility: 7, Usage: parseInt(ShoppingNum),label:ShoppingNum+"M"},
+            {Utility: 8, Usage: parseInt(TrolleysNum),label:TrolleysNum+"M"},
+            {Utility: 9, Usage: parseInt(VendingNum),label:VendingNum+"M"},
+            {Utility: 10, Usage: parseInt(WashroomNum),label:WashroomNum+"M"},
           ];
         return (
             <div>
@@ -140,7 +140,7 @@ export class HomeN extends Component {
                                                                                 />
                                                                                 <VictoryBar
                                                                                 data={data}
-                                                                                barWidth={({ index }) => 5}
+                                                                                barWidth={({ index }) => 7}
                                                                                 x="Utility"
                                                                                 y="Usage"
                                                                                 />
