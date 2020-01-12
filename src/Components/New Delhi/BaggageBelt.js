@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme} from 'victory'
+import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme,VictoryTooltip} from 'victory'
 import './StylesN.css'
 import './BeltStyle.css'
 
@@ -34,28 +34,28 @@ export class BaggageBelt extends Component {
     render() {
         const {Total,Belt1,Belt2,Belt3,Belt4,Belt5,Belt6,Belt7,Belt8,Belt9,Belt10,UtilBelt1,UtilBelt2,UtilBelt3,UtilBelt4,UtilBelt5,UtilBelt6,UtilBelt7,UtilBelt8,UtilBelt9,UtilBelt10}=this.state;
         const data1 = [
-            {x: parseFloat(Belt1*100/Total).toFixed(2) , y: parseInt(Belt1),label:Belt1+"M"},
-            {x: parseFloat(Belt2*100/Total).toFixed(2) , y: parseInt(Belt2),label:Belt2+"M"},
-            {x: parseFloat(Belt3*100/Total).toFixed(2) , y: parseInt(Belt3),label:Belt3+"M"},
-            {x: parseFloat(Belt4*100/Total).toFixed(2) , y: parseInt(Belt4),label:Belt4+"M"},
-            {x: parseFloat(Belt5*100/Total).toFixed(2) , y: parseInt(Belt5),label:Belt5+"M"},
-            {x: parseFloat(Belt6*100/Total).toFixed(2) , y: parseInt(Belt6),label:Belt6+"M"},
-            {x: parseFloat(Belt7*100/Total).toFixed(2) , y: parseInt(Belt7),label:Belt7+"M"},
-            {x: parseFloat(Belt8*100/Total).toFixed(2) , y: parseInt(Belt8),label:Belt8+"M"},
-            {x: parseFloat(Belt9*100/Total).toFixed(2) , y: parseInt(Belt9),label:Belt9+"M"},
-            {x: parseFloat(Belt10*100/Total).toFixed(2) , y: parseInt(Belt10),label:Belt10+"M"},
+            {x: parseFloat(Belt1*100/Total).toFixed(2) , y: parseInt(Belt1),label:"Belt1"+"-"+Belt1+"M"},
+            {x: parseFloat(Belt2*100/Total).toFixed(2) , y: parseInt(Belt2),label:"Belt2"+"-"+Belt2+"M"},
+            {x: parseFloat(Belt3*100/Total).toFixed(2) , y: parseInt(Belt3),label:"Belt3"+"-"+Belt3+"M"},
+            {x: parseFloat(Belt4*100/Total).toFixed(2) , y: parseInt(Belt4),label:"Belt4"+"-"+Belt4+"M"},
+            {x: parseFloat(Belt5*100/Total).toFixed(2) , y: parseInt(Belt5),label:"Belt5"+"-"+Belt5+"M"},
+            {x: parseFloat(Belt6*100/Total).toFixed(2) , y: parseInt(Belt6),label:"Belt6"+"-"+Belt6+"M"},
+            {x: parseFloat(Belt7*100/Total).toFixed(2) , y: parseInt(Belt7),label:"Belt7"+"-"+Belt7+"M"},
+            {x: parseFloat(Belt8*100/Total).toFixed(2) , y: parseInt(Belt8),label:"Belt8"+"-"+Belt8+"M"},
+            {x: parseFloat(Belt9*100/Total).toFixed(2) , y: parseInt(Belt9),label:"Belt9"+"-"+Belt9+"M"},
+            {x: parseFloat(Belt10*100/Total).toFixed(2) , y: parseInt(Belt10),label:"Belt10"+"-"+Belt10+"M"},
           ];
           const data2 = [
-            {Utilization: parseFloat(UtilBelt1*100/Total).toFixed(2) , Belt: parseInt(UtilBelt1)},
-            {Utilization: parseFloat(UtilBelt2*100/Total).toFixed(2) , Belt: parseInt(UtilBelt2)},
-            {Utilization: parseFloat(UtilBelt3*100/Total).toFixed(2) , Belt: parseInt(UtilBelt3)},
-            {Utilization: parseFloat(UtilBelt4*100/Total).toFixed(2) , Belt: parseInt(UtilBelt4)},
-            {Utilization: parseFloat(UtilBelt5*100/Total).toFixed(2) , Belt: parseInt(UtilBelt5)},
-            {Utilization: parseFloat(UtilBelt6*100/Total).toFixed(2) , Belt: parseInt(UtilBelt6)},
-            {Utilization: parseFloat(UtilBelt7*100/Total).toFixed(2) , Belt: parseInt(UtilBelt7)},
-            {Utilization: parseFloat(UtilBelt8*100/Total).toFixed(2) , Belt: parseInt(UtilBelt8)},
-            {Utilization: parseFloat(UtilBelt9*100/Total).toFixed(2) , Belt: parseInt(UtilBelt9)},
-            {Utilization: parseFloat(UtilBelt10*100/Total).toFixed(2) , Belt: parseInt(UtilBelt10)},
+            {Utilization: parseFloat(UtilBelt1*100/Total).toFixed(2) , Belt: parseInt(UtilBelt1),label:UtilBelt1+"%"},
+            {Utilization: parseFloat(UtilBelt2*100/Total).toFixed(2) , Belt: parseInt(UtilBelt2),label:UtilBelt2+"%"},
+            {Utilization: parseFloat(UtilBelt3*100/Total).toFixed(2) , Belt: parseInt(UtilBelt3),label:UtilBelt3+"%"},
+            {Utilization: parseFloat(UtilBelt4*100/Total).toFixed(2) , Belt: parseInt(UtilBelt4),label:UtilBelt4+"%"},
+            {Utilization: parseFloat(UtilBelt5*100/Total).toFixed(2) , Belt: parseInt(UtilBelt5),label:UtilBelt5+"%"},
+            {Utilization: parseFloat(UtilBelt6*100/Total).toFixed(2) , Belt: parseInt(UtilBelt6),label:UtilBelt6+"%"},
+            {Utilization: parseFloat(UtilBelt7*100/Total).toFixed(2) , Belt: parseInt(UtilBelt7),label:UtilBelt7+"%"},
+            {Utilization: parseFloat(UtilBelt8*100/Total).toFixed(2) , Belt: parseInt(UtilBelt8),label:UtilBelt8+"%"},
+            {Utilization: parseFloat(UtilBelt9*100/Total).toFixed(2) , Belt: parseInt(UtilBelt9),label:UtilBelt9+"%"},
+            {Utilization: parseFloat(UtilBelt10*100/Total).toFixed(2) , Belt: parseInt(UtilBelt10),label:UtilBelt10+"%"},
           ];
         return (
             <div>
@@ -66,6 +66,37 @@ export class BaggageBelt extends Component {
                 </p>
                 <div className="fl w-60 pa3 f4">
                     <VictoryPie 
+                        labelComponent={<VictoryTooltip
+                            cornerRadius={20}
+                            pointerLength={8}
+                        />}
+                        events={[{
+                            target: "data",
+                            eventHandlers: {
+                              onMouseOver: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: true })
+                                  }
+                                ];
+                              },
+                              onMouseOut: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => {}
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: false })
+                                  }
+                                ];
+                              }
+                            }
+                          }]}
                         data={data1} 
                         animate={{
                             duration: 2000,
@@ -157,6 +188,34 @@ export class BaggageBelt extends Component {
                                 />
                                 <VictoryBar
                                     data={data2}
+                                    events={[{
+                                        target: "data",
+                                        eventHandlers: {
+                                          onMouseOver: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => ({style: {fill: "gold", width: 30}})
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: true })
+                                              }
+                                            ];
+                                          },
+                                          onMouseOut: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => {}
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: false })
+                                              }
+                                            ];
+                                          }
+                                        }
+                                      }]}
+            
                                     barWidth={({ index }) => 5}
                                     x="Utilization"
                                     y="Belt"

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css';
 import 'tachyons'
 //import './Styles.css'
-import {VictoryPie} from 'victory'
+import {VictoryPie,VictoryTooltip} from 'victory'
 //import Home from '../Components/Home'
 import HomeN from '../Components/New Delhi/HomeN'
 import HomeM from '../Components/Mumbai/HomeM'
@@ -42,12 +42,12 @@ export class App extends Component {
     const Total=IGI+CSMI+NSBI+KI+CI+RGI;
     console.log(this.state.PageState);
     const data = [
-        {x: parseFloat(IGI*100/Total).toFixed(2), y: parseFloat(IGI/Total),label:IGI+"M"},
-        {x: parseFloat(CSMI*100/Total).toFixed(2), y: parseFloat(CSMI/Total),label:CSMI+"M"},
-        {x: parseFloat(NSBI*100/Total).toFixed(2), y: parseFloat(NSBI/Total),label:NSBI+"M"},
-        {x: parseFloat(KI*100/Total).toFixed(2), y: parseFloat(KI/Total),label:KI+"M"},
-        {x: parseFloat(CI*100/Total).toFixed(2), y: parseFloat(CI/Total),label:CI+"M"},
-        {x: parseFloat(RGI*100/Total).toFixed(2), y: parseFloat(RGI/Total),label:RGI+"M"}
+        {x: parseFloat(IGI*100/Total).toFixed(2), y: parseFloat(IGI/Total),label:"IGI"+"-"+IGI+"M"},
+        {x: parseFloat(CSMI*100/Total).toFixed(2), y: parseFloat(CSMI/Total),label:"CSMI"+"-"+CSMI+"M"},
+        {x: parseFloat(NSBI*100/Total).toFixed(2), y: parseFloat(NSBI/Total),label:"NSBI"+"-"+NSBI+"M"},
+        {x: parseFloat(KI*100/Total).toFixed(2), y: parseFloat(KI/Total),label:"KI"+"-"+KI+"M"},
+        {x: parseFloat(CI*100/Total).toFixed(2), y: parseFloat(CI/Total),label:"CI"+"-"+CI+"M"},
+        {x: parseFloat(RGI*100/Total).toFixed(2), y: parseFloat(RGI/Total),label:"RGI"+"-"+RGI+"M"}
       ];
     return (
       <div className="">
@@ -181,7 +181,38 @@ export class App extends Component {
                                       <div className="ml2 mr5">
                                           <p className="f3 pa3 ml3 mb3">Comparison among the top 6 busiest airport for year 2018-19 is as follows: </p>
                                           <div className="fl w-50 pa3 f4 Home-event">
-                                              <VictoryPie 
+                                              <VictoryPie
+                                                  labelComponent={<VictoryTooltip
+                                                    cornerRadius={20}
+                                                    pointerLength={8}
+                                                  />} 
+                                                  events={[{
+                                                    target: "data",
+                                                    eventHandlers: {
+                                                      onMouseOver: () => {
+                                                        return [
+                                                          {
+                                                            target: "data",
+                                                            mutation: () => ({style: {fill: "gold", width: 30}})
+                                                          }, {
+                                                            target: "labels",
+                                                            mutation: () => ({ active: true })
+                                                          }
+                                                        ];
+                                                      },
+                                                      onMouseOut: () => {
+                                                        return [
+                                                          {
+                                                            target: "data",
+                                                            mutation: () => {}
+                                                          }, {
+                                                            target: "labels",
+                                                            mutation: () => ({ active: false })
+                                                          }
+                                                        ];
+                                                      }
+                                                    }
+                                                  }]}
                                                   data={data} 
                                                   //dataComponent={<Slice events={{ onClick: handleClick }}/>}
                                                   animate={{

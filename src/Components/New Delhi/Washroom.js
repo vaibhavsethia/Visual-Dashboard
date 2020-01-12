@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme,VictoryLabel} from 'victory'
+import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme,VictoryTooltip} from 'victory'
 import './StylesN.css'
 import './BeltStyle.css'
 
@@ -26,20 +26,20 @@ export class Washroom extends Component {
     render() {
         const {Total,Washroom1,Washroom2,Washroom3,Washroom4,Washroom5,Washroom6,UtilWashroom1,UtilWashroom2,UtilWashroom3,UtilWashroom4,UtilWashroom5,UtilWashroom6}=this.state;
         const data1 = [
-            {x: parseFloat(Washroom1*100/Total).toFixed(2) , y: parseInt(Washroom1),label:Washroom1+"M"},
-            {x: parseFloat(Washroom2*100/Total).toFixed(2) , y: parseInt(Washroom2),label:Washroom2+"M"},
-            {x: parseFloat(Washroom3*100/Total).toFixed(2) , y: parseInt(Washroom3),label:Washroom3+"M"},
-            {x: parseFloat(Washroom4*100/Total).toFixed(2) , y: parseInt(Washroom4),label:Washroom4+"M"},
-            {x: parseFloat(Washroom5*100/Total).toFixed(2) , y: parseInt(Washroom5),label:Washroom5+"M"},
-            {x: parseFloat(Washroom6*100/Total).toFixed(2) , y: parseInt(Washroom6),label:Washroom6+"M"},
+            {x: parseFloat(Washroom1*100/Total).toFixed(2) , y: parseInt(Washroom1),label:"Washroom1"+"-"+Washroom1+"M"},
+            {x: parseFloat(Washroom2*100/Total).toFixed(2) , y: parseInt(Washroom2),label:"Washroom2"+"-"+Washroom2+"M"},
+            {x: parseFloat(Washroom3*100/Total).toFixed(2) , y: parseInt(Washroom3),label:"Washroom3"+"-"+Washroom3+"M"},
+            {x: parseFloat(Washroom4*100/Total).toFixed(2) , y: parseInt(Washroom4),label:"Washroom4"+"-"+Washroom4+"M"},
+            {x: parseFloat(Washroom5*100/Total).toFixed(2) , y: parseInt(Washroom5),label:"Washroom5"+"-"+Washroom5+"M"},
+            {x: parseFloat(Washroom6*100/Total).toFixed(2) , y: parseInt(Washroom6),label:"Washroom6"+"-"+Washroom6+"M"},
           ];
           const data2 = [
-            {Utilization: parseFloat(UtilWashroom1*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom1)},
-            {Utilization: parseFloat(UtilWashroom2*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom2)},
-            {Utilization: parseFloat(UtilWashroom3*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom3)},
-            {Utilization: parseFloat(UtilWashroom4*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom4)},
-            {Utilization: parseFloat(UtilWashroom5*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom5)},
-            {Utilization: parseFloat(UtilWashroom6*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom6)},
+            {Utilization: parseFloat(UtilWashroom1*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom1),label:UtilWashroom1+"%"},
+            {Utilization: parseFloat(UtilWashroom2*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom2),label:UtilWashroom2+"%"},
+            {Utilization: parseFloat(UtilWashroom3*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom3),label:UtilWashroom3+"%"},
+            {Utilization: parseFloat(UtilWashroom4*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom4),label:UtilWashroom4+"%"},
+            {Utilization: parseFloat(UtilWashroom5*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom5),label:UtilWashroom5+"%"},
+            {Utilization: parseFloat(UtilWashroom6*100/Total).toFixed(2) , Washroom: parseInt(UtilWashroom6),label:UtilWashroom6+"%"},
           ];
         return (
             <div>
@@ -50,6 +50,37 @@ export class Washroom extends Component {
                 </p>
                 <div className="fl w-60 pa3 f4">
                     <VictoryPie 
+                        labelComponent={<VictoryTooltip
+                            cornerRadius={20}
+                            pointerLength={8}
+                        />}
+                        events={[{
+                            target: "data",
+                            eventHandlers: {
+                              onMouseOver: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: true })
+                                  }
+                                ];
+                              },
+                              onMouseOut: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => {}
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: false })
+                                  }
+                                ];
+                              }
+                            }
+                          }]}
                         data={data1} 
                         animate={{
                             duration: 2000,
@@ -121,6 +152,34 @@ export class Washroom extends Component {
                                 />
                                 <VictoryBar
                                     data={data2}
+                                    events={[{
+                                        target: "data",
+                                        eventHandlers: {
+                                          onMouseOver: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => ({style: {fill: "gold", width: 30}})
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: true })
+                                              }
+                                            ];
+                                          },
+                                          onMouseOut: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => {}
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: false })
+                                              }
+                                            ];
+                                          }
+                                        }
+                                      }]}
+            
                                     barWidth={({ index }) => 10}
                                     x="Utilization"
                                     y="Washroom"

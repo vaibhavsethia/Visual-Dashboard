@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme} from 'victory'
+import {VictoryPie,VictoryTooltip} from 'victory'
 import './StylesN.css'
 import './BeltStyle.css'
 
@@ -26,18 +26,18 @@ export class Lounge extends Component {
     render() {
         const {Total,Normal1,Normal2,Normal3,Normal4,Normal5,Normal6,VIP1,VIP2,VIP3,VIP4}=this.state;
         const data1 = [
-            {x: parseFloat(Normal1*100/Total).toFixed(2) , y: parseInt(Normal1),label:Normal1+"M"},
-            {x: parseFloat(Normal2*100/Total).toFixed(2) , y: parseInt(Normal2),label:Normal2+"M"},
-            {x: parseFloat(Normal3*100/Total).toFixed(2) , y: parseInt(Normal3),label:Normal3+"M"},
-            {x: parseFloat(Normal4*100/Total).toFixed(2) , y: parseInt(Normal4),label:Normal4+"M"},
-            {x: parseFloat(Normal5*100/Total).toFixed(2) , y: parseInt(Normal5),label:Normal5+"M"},
-            {x: parseFloat(Normal6*100/Total).toFixed(2) , y: parseInt(Normal6),label:Normal6+"M"},
+            {x: parseFloat(Normal1*100/Total).toFixed(2) , y: parseInt(Normal1),label:"Normal1"+"-"+Normal1+"M"},
+            {x: parseFloat(Normal2*100/Total).toFixed(2) , y: parseInt(Normal2),label:"Normal2"+"-"+Normal2+"M"},
+            {x: parseFloat(Normal3*100/Total).toFixed(2) , y: parseInt(Normal3),label:"Normal3"+"-"+Normal3+"M"},
+            {x: parseFloat(Normal4*100/Total).toFixed(2) , y: parseInt(Normal4),label:"Normal4"+"-"+Normal4+"M"},
+            {x: parseFloat(Normal5*100/Total).toFixed(2) , y: parseInt(Normal5),label:"Normal5"+"-"+Normal5+"M"},
+            {x: parseFloat(Normal6*100/Total).toFixed(2) , y: parseInt(Normal6),label:"Normal6"+"-"+Normal6+"M"},
           ];
           const data2 = [
-            {x: parseFloat(VIP1*100/Total).toFixed(2) , y: parseInt(VIP1),label:VIP1+"M"},
-            {x: parseFloat(VIP2*100/Total).toFixed(2) , y: parseInt(VIP2),label:VIP2+"M"},
-            {x: parseFloat(VIP3*100/Total).toFixed(2) , y: parseInt(VIP3),label:VIP3+"M"},
-            {x: parseFloat(VIP4*100/Total).toFixed(2) , y: parseInt(VIP4),label:VIP4+"M"},
+            {x: parseFloat(VIP1*100/Total).toFixed(2) , y: parseInt(VIP1),label:"VIP1"+"-"+VIP1+"M"},
+            {x: parseFloat(VIP2*100/Total).toFixed(2) , y: parseInt(VIP2),label:"VIP2"+"-"+VIP2+"M"},
+            {x: parseFloat(VIP3*100/Total).toFixed(2) , y: parseInt(VIP3),label:"VIP3"+"-"+VIP3+"M"},
+            {x: parseFloat(VIP4*100/Total).toFixed(2) , y: parseInt(VIP4),label:"VIP4"+"-"+VIP4+"M"},
           ];
         return (
             <div>
@@ -49,6 +49,37 @@ export class Lounge extends Component {
                 </p>
                 <div className="fl w-60 pa3 f4">
                     <VictoryPie 
+                        labelComponent={<VictoryTooltip
+                            cornerRadius={20}
+                            pointerLength={8}
+                        />}
+                        events={[{
+                            target: "data",
+                            eventHandlers: {
+                              onMouseOver: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: true })
+                                  }
+                                ];
+                              },
+                              onMouseOut: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => {}
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: false })
+                                  }
+                                ];
+                              }
+                            }
+                          }]}
                         data={data1} 
                         animate={{
                             duration: 2000,
@@ -109,7 +140,11 @@ export class Lounge extends Component {
                         </p>
                         <div className="fl w-60 pa3 f4">
                             <VictoryPie 
-                                data={data2} 
+                                data={data2}
+                                labelComponent={<VictoryTooltip
+                                    cornerRadius={20}
+                                    pointerLength={8}
+                                />}        
                                 animate={{
                                     duration: 2000,
                                     onLoad: { duration: 1000 }

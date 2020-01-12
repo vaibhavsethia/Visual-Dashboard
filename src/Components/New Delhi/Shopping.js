@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme} from 'victory'
+import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme,VictoryTooltip} from 'victory'
 import './StylesN.css'
 import './BeltStyle.css'
 
@@ -33,27 +33,27 @@ export class Shopping extends Component {
     render() {
         const {Total,Apparel,Beauty,Electronics,Pharmacy,Toys,Gifts,WineShops,Jewelery,PackedFoods,UtilBelt1,UtilBelt2,UtilBelt3,UtilBelt4,UtilBelt5,UtilBelt6,UtilBelt7,UtilBelt8,UtilBelt9,UtilBelt10}=this.state;
         const data1 = [
-            {x: parseFloat(Apparel*100/Total).toFixed(2) , y: parseInt(Apparel),label:Apparel+"M"},
-            {x: parseFloat(Beauty*100/Total).toFixed(2) , y: parseInt(Beauty),label:Beauty+"M"},
-            {x: parseFloat(Electronics*100/Total).toFixed(2) , y: parseInt(Electronics),label:Electronics+"M"},
-            {x: parseFloat(Pharmacy*100/Total).toFixed(2) , y: parseInt(Pharmacy),label:Pharmacy+"M"},
-            {x: parseFloat(Toys*100/Total).toFixed(2) , y: parseInt(Toys),label:Toys+"M"},
-            {x: parseFloat(Gifts*100/Total).toFixed(2) , y: parseInt(Gifts),label:Gifts+"M"},
-            {x: parseFloat(WineShops*100/Total).toFixed(2) , y: parseInt(WineShops),label:WineShops+"M"},
-            {x: parseFloat(Jewelery*100/Total).toFixed(2) , y: parseInt(Jewelery),label:Jewelery+"M"},
-            {x: parseFloat(PackedFoods*100/Total).toFixed(2) , y: parseInt(PackedFoods),label:PackedFoods+"M"},
+            {x: parseFloat(Apparel*100/Total).toFixed(2) , y: parseInt(Apparel),label:"Apparel"+"-"+Apparel+"M"},
+            {x: parseFloat(Beauty*100/Total).toFixed(2) , y: parseInt(Beauty),label:"Beauty"+"-"+Beauty+"M"},
+            {x: parseFloat(Electronics*100/Total).toFixed(2) , y: parseInt(Electronics),label:"Electronics"+"-"+Electronics+"M"},
+            {x: parseFloat(Pharmacy*100/Total).toFixed(2) , y: parseInt(Pharmacy),label:"Pharmacy"+"-"+Pharmacy+"M"},
+            {x: parseFloat(Toys*100/Total).toFixed(2) , y: parseInt(Toys),label:"Toys"+"-"+Toys+"M"},
+            {x: parseFloat(Gifts*100/Total).toFixed(2) , y: parseInt(Gifts),label:"Gifts"+"-"+Gifts+"M"},
+            {x: parseFloat(WineShops*100/Total).toFixed(2) , y: parseInt(WineShops),label:"WineShops"+"-"+WineShops+"M"},
+            {x: parseFloat(Jewelery*100/Total).toFixed(2) , y: parseInt(Jewelery),label:"Jewelery"+"-"+Jewelery+"M"},
+            {x: parseFloat(PackedFoods*100/Total).toFixed(2) , y: parseInt(PackedFoods),label:"PackedFoods"+"-"+PackedFoods+"M"},
           ];
           const data2 = [
-            {Utilization: parseFloat(UtilBelt1*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt1)},
-            {Utilization: parseFloat(UtilBelt2*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt2)},
-            {Utilization: parseFloat(UtilBelt3*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt3)},
-            {Utilization: parseFloat(UtilBelt4*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt4)},
-            {Utilization: parseFloat(UtilBelt5*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt5)},
-            {Utilization: parseFloat(UtilBelt6*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt6)},
-            {Utilization: parseFloat(UtilBelt7*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt7)},
-            {Utilization: parseFloat(UtilBelt8*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt8)},
-            {Utilization: parseFloat(UtilBelt9*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt9)},
-            {Utilization: parseFloat(UtilBelt10*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt10)},
+            {Utilization: parseFloat(UtilBelt1*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt1),label:UtilBelt1+"%"},
+            {Utilization: parseFloat(UtilBelt2*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt2),label:UtilBelt2+"%"},
+            {Utilization: parseFloat(UtilBelt3*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt3),label:UtilBelt3+"%"},
+            {Utilization: parseFloat(UtilBelt4*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt4),label:UtilBelt4+"%"},
+            {Utilization: parseFloat(UtilBelt5*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt5),label:UtilBelt5+"%"},
+            {Utilization: parseFloat(UtilBelt6*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt6),label:UtilBelt6+"%"},
+            {Utilization: parseFloat(UtilBelt7*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt7),label:UtilBelt7+"%"},
+            {Utilization: parseFloat(UtilBelt8*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt8),label:UtilBelt8+"%"},
+            {Utilization: parseFloat(UtilBelt9*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt9),label:UtilBelt9+"%"},
+            {Utilization: parseFloat(UtilBelt10*100/Total).toFixed(2) , ShoppingOutlet: parseInt(UtilBelt10),label:UtilBelt10+"%"},
           ];
         return (
             <div>
@@ -64,7 +64,38 @@ export class Shopping extends Component {
                 </p>
                 <div className="fl w-60 pa3 f4">
                     <VictoryPie 
-                        data={data1} 
+                        data={data1}
+                        labelComponent={<VictoryTooltip
+                            cornerRadius={20}
+                            pointerLength={8}
+                        />} 
+                        events={[{
+                            target: "data",
+                            eventHandlers: {
+                              onMouseOver: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: true })
+                                  }
+                                ];
+                              },
+                              onMouseOut: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => {}
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: false })
+                                  }
+                                ];
+                              }
+                            }
+                          }]}
                         animate={{
                             duration: 2000,
                             onLoad: { duration: 1000 }
@@ -77,7 +108,7 @@ export class Shopping extends Component {
                         padAngle={({ datum }) => 1}
                         endAngle={360}
                         startAngle={0}
-                        width={400}
+                        width={400}                        
                     >
                     </VictoryPie>
                 </div>
@@ -150,6 +181,34 @@ export class Shopping extends Component {
                                 />
                                 <VictoryBar
                                     data={data2}
+                                    events={[{
+                                        target: "data",
+                                        eventHandlers: {
+                                          onMouseOver: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => ({style: {fill: "gold", width: 30}})
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: true })
+                                              }
+                                            ];
+                                          },
+                                          onMouseOut: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => {}
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: false })
+                                              }
+                                            ];
+                                          }
+                                        }
+                                      }]}
+            
                                     barWidth={({ index }) => 5}
                                     x="Utilization"
                                     y="ShoppingOutlet"

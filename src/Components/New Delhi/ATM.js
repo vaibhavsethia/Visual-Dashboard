@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme} from 'victory'
+import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme,VictoryTooltip} from 'victory'
 import './StylesN.css'
 import './BeltStyle.css'
 
@@ -24,18 +24,18 @@ export class ATM extends Component {
     render() {
         const {Total,ATM1,ATM2,ATM3,ATM4,ATM5,ATM6,ATM7,ATM8,ATM9,ATM10,UtilATM1,UtilATM2,UtilATM3,UtilATM4,UtilATM5,UtilATM6,UtilATM7,UtilATM8,UtilATM9,UtilATM10}=this.state;
         const data1 = [
-            {x: parseFloat(ATM1*100/Total).toFixed(2) , y: parseInt(ATM1),label:ATM1+"M"},
-            {x: parseFloat(ATM2*100/Total).toFixed(2) , y: parseInt(ATM2),label:ATM2+"M"},
-            {x: parseFloat(ATM3*100/Total).toFixed(2) , y: parseInt(ATM3),label:ATM3+"M"},
-            {x: parseFloat(ATM4*100/Total).toFixed(2) , y: parseInt(ATM4),label:ATM4+"M"},
-            {x: parseFloat(ATM5*100/Total).toFixed(2) , y: parseInt(ATM5),label:ATM5+"M"},
+            {x: parseFloat(ATM1*100/Total).toFixed(2) , y: parseInt(ATM1),label:"ATM1"+"-"+ATM1+"M"},
+            {x: parseFloat(ATM2*100/Total).toFixed(2) , y: parseInt(ATM2),label:"ATM2"+"-"+ATM2+"M"},
+            {x: parseFloat(ATM3*100/Total).toFixed(2) , y: parseInt(ATM3),label:"ATM3"+"-"+ATM3+"M"},
+            {x: parseFloat(ATM4*100/Total).toFixed(2) , y: parseInt(ATM4),label:"ATM4"+"-"+ATM4+"M"},
+            {x: parseFloat(ATM5*100/Total).toFixed(2) , y: parseInt(ATM5),label:"ATM5"+"-"+ATM5+"M"},
           ];
           const data2 = [
-            {Utilization: parseFloat(UtilATM1*100/Total).toFixed(2) , ATM: parseInt(UtilATM1)},
-            {Utilization: parseFloat(UtilATM2*100/Total).toFixed(2) , ATM: parseInt(UtilATM2)},
-            {Utilization: parseFloat(UtilATM3*100/Total).toFixed(2) , ATM: parseInt(UtilATM3)},
-            {Utilization: parseFloat(UtilATM4*100/Total).toFixed(2) , ATM: parseInt(UtilATM4)},
-            {Utilization: parseFloat(UtilATM5*100/Total).toFixed(2) , ATM: parseInt(UtilATM5)},
+            {Utilization: parseFloat(UtilATM1*100/Total).toFixed(2) , ATM: parseInt(UtilATM1),label:UtilATM1+"%"},
+            {Utilization: parseFloat(UtilATM2*100/Total).toFixed(2) , ATM: parseInt(UtilATM2),label:UtilATM2+"%"},
+            {Utilization: parseFloat(UtilATM3*100/Total).toFixed(2) , ATM: parseInt(UtilATM3),label:UtilATM3+"%"},
+            {Utilization: parseFloat(UtilATM4*100/Total).toFixed(2) , ATM: parseInt(UtilATM4),label:UtilATM4+"%"},
+            {Utilization: parseFloat(UtilATM5*100/Total).toFixed(2) , ATM: parseInt(UtilATM5),label:UtilATM5+"%"},
           ];
         return (
             <div>
@@ -46,6 +46,37 @@ export class ATM extends Component {
                 </p>
                 <div className="fl w-60 pa3 f4">
                     <VictoryPie 
+                        labelComponent={<VictoryTooltip
+                          cornerRadius={20}
+                          pointerLength={8}
+                        />}
+                        events={[{
+                            target: "data",
+                            eventHandlers: {
+                              onMouseOver: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: true })
+                                  }
+                                ];
+                              },
+                              onMouseOut: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => {}
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: false })
+                                  }
+                                ];
+                              }
+                            }
+                          }]}
                         data={data1} 
                         animate={{
                             duration: 2000,
@@ -110,10 +141,38 @@ export class ATM extends Component {
                                 />
                                 <VictoryAxis
                                     dependentAxis
-                                    tickFormat={(y) => (`$${y}%`)}
+                                    tickFormat={(y) => (`${y}%`)}
                                 />
                                 <VictoryBar
                                     data={data2}
+                                    events={[{
+                                        target: "data",
+                                        eventHandlers: {
+                                          onMouseOver: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => ({style: {fill: "gold", width: 30}})
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: true })
+                                              }
+                                            ];
+                                          },
+                                          onMouseOut: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => {}
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: false })
+                                              }
+                                            ];
+                                          }
+                                        }
+                                      }]}
+            
                                     barWidth={({ index }) => 10}
                                     x="Utilization"
                                     y="ATM"

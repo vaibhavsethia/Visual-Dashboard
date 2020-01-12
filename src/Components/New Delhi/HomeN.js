@@ -136,10 +136,38 @@ export class HomeN extends Component {
                                                                                     />
                                                                                 <VictoryAxis
                                                                                 dependentAxis
-                                                                                tickFormat={(y) => (`$${y}M`)}
+                                                                                tickFormat={(y) => (`${y}M`)}
                                                                                 />
                                                                                 <VictoryBar
                                                                                 data={data}
+                                                                                events={[{
+                                                                                    target: "data",
+                                                                                    eventHandlers: {
+                                                                                      onMouseOver: () => {
+                                                                                        return [
+                                                                                          {
+                                                                                            target: "data",
+                                                                                            mutation: () => ({style: {fill: "gold", width: 30}})
+                                                                                          }, {
+                                                                                            target: "labels",
+                                                                                            mutation: () => ({ active: true })
+                                                                                          }
+                                                                                        ];
+                                                                                      },
+                                                                                      onMouseOut: () => {
+                                                                                        return [
+                                                                                          {
+                                                                                            target: "data",
+                                                                                            mutation: () => {}
+                                                                                          }, {
+                                                                                            target: "labels",
+                                                                                            mutation: () => ({ active: false })
+                                                                                          }
+                                                                                        ];
+                                                                                      }
+                                                                                    }
+                                                                                  }]}
+                                                        
                                                                                 barWidth={({ index }) => 7}
                                                                                 x="Utility"
                                                                                 y="Usage"

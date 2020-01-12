@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {VictoryPie} from 'victory'
+import {VictoryPie,VictoryTooltip} from 'victory'
 import './StylesN.css'
 
 export class BoardingGate extends Component {
@@ -20,12 +20,12 @@ export class BoardingGate extends Component {
     render() {
         const {Total,Gate1,Gate2,Gate3,Gate4,Gate5,Gate6}=this.state;
         const data = [
-            {x: parseFloat(Gate1*100/Total).toFixed(2) , y: parseInt(Gate1),label:Gate1+"M"},
-            {x: parseFloat(Gate2*100/Total).toFixed(2) , y: parseInt(Gate2),label:Gate2+"M"},
-            {x: parseFloat(Gate3*100/Total).toFixed(2) , y: parseInt(Gate3),label:Gate3+"M"},
-            {x: parseFloat(Gate4*100/Total).toFixed(2) , y: parseInt(Gate4),label:Gate4+"M"},
-            {x: parseFloat(Gate5*100/Total).toFixed(2) , y: parseInt(Gate5),label:Gate5+"M"},
-            {x: parseFloat(Gate6*100/Total).toFixed(2) , y: parseInt(Gate6),label:Gate6+"M"},
+            {x: parseFloat(Gate1*100/Total).toFixed(2) , y: parseInt(Gate1),label:"Gate1"+"-"+Gate1+"M"},
+            {x: parseFloat(Gate2*100/Total).toFixed(2) , y: parseInt(Gate2),label:"Gate2"+"-"+Gate2+"M"},
+            {x: parseFloat(Gate3*100/Total).toFixed(2) , y: parseInt(Gate3),label:"Gate3"+"-"+Gate3+"M"},
+            {x: parseFloat(Gate4*100/Total).toFixed(2) , y: parseInt(Gate4),label:"Gate4"+"-"+Gate4+"M"},
+            {x: parseFloat(Gate5*100/Total).toFixed(2) , y: parseInt(Gate5),label:"Gate5"+"-"+Gate5+"M"},
+            {x: parseFloat(Gate6*100/Total).toFixed(2) , y: parseInt(Gate6),label:"Gate6"+"-"+Gate6+"M"},
           ];
         return (
             <div>
@@ -36,6 +36,37 @@ export class BoardingGate extends Component {
                 </p>
                 <div className="fl w-60 pa3 f4">
                     <VictoryPie 
+                        labelComponent={<VictoryTooltip
+                            cornerRadius={20}
+                            pointerLength={8}
+                        />}
+                        events={[{
+                            target: "data",
+                            eventHandlers: {
+                              onMouseOver: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: true })
+                                  }
+                                ];
+                              },
+                              onMouseOut: () => {
+                                return [
+                                  {
+                                    target: "data",
+                                    mutation: () => {}
+                                  }, {
+                                    target: "labels",
+                                    mutation: () => ({ active: false })
+                                  }
+                                ];
+                              }
+                            }
+                          }]}
                         data={data} 
                         animate={{
                             duration: 2000,

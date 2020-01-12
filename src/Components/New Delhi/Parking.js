@@ -26,18 +26,18 @@ export class Parking extends Component {
     render() {
         const {Month1,Month2,Month3,Month4,Month5,Month6,Month7,Month8,Month9,Month10,Month11,Month12}=this.state;
         const data2 = [
-            {Month:"1" , Belt: parseInt(Month1)},
-            {Month:"2" , Belt: parseInt(Month2)},
-            {Month:"3" , Belt: parseInt(Month3)},
-            {Month:"4" , Belt: parseInt(Month4)},
-            {Month:"5" , Belt: parseInt(Month5)},
-            {Month:"6" , Belt: parseInt(Month6)},
-            {Month:"7" , Belt: parseInt(Month7)},
-            {Month:"8" , Belt: parseInt(Month8)},
-            {Month:"9" , Belt: parseInt(Month9)},
-            {Month: "10" , Belt: parseInt(Month10)},
-            {Month: "11" , Belt: parseInt(Month11)},
-            {Month: "12" , Belt: parseInt(Month12)},
+            {Month:"1" , Belt: parseInt(Month1),label:Month1+"%"},
+            {Month:"2" , Belt: parseInt(Month2),label:Month2+"%"},
+            {Month:"3" , Belt: parseInt(Month3),label:Month3+"%"},
+            {Month:"4" , Belt: parseInt(Month4),label:Month4+"%"},
+            {Month:"5" , Belt: parseInt(Month5),label:Month5+"%"},
+            {Month:"6" , Belt: parseInt(Month6),label:Month6+"%"},
+            {Month:"7" , Belt: parseInt(Month7),label:Month7+"%"},
+            {Month:"8" , Belt: parseInt(Month8),label:Month8+"%"},
+            {Month:"9" , Belt: parseInt(Month9),label:Month9+"%"},
+            {Month: "10" , Belt: parseInt(Month10),label:Month10+"%"},
+            {Month: "11" , Belt: parseInt(Month11),label:Month11+"%"},
+            {Month: "12" , Belt: parseInt(Month12),label:Month12+"%"},
           ];
         return (
             <div>
@@ -54,14 +54,42 @@ export class Parking extends Component {
                             style={{ parent: { maxWidth: "100%" } }}>
                                 <VictoryAxis
                                     tickValues={[1, 2, 3, 4,5,6,7,8,9,10,11,12]}
-                                    tickFormat={["Jan", "Feb", "Mar", "Apr","May", "Jun", "Jul", "Aug","Sep", "Oct","Nov","Dec"]}
+                                    tickFormat={["Jan", "Feb", "Mar", "Apr","May","Jun", "Jul", "Aug","Sep", "Oct","Nov","Dec"]}
                                 />
                                 <VictoryAxis
                                     dependentAxis
-                                    tickFormat={(y) => (`$${y}%`)}
+                                    tickFormat={(y) => (`${y}%`)}
                                 />
                                 <VictoryBar
                                     data={data2}
+                                    events={[{
+                                        target: "data",
+                                        eventHandlers: {
+                                          onMouseOver: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => ({style: {fill: "gold", width: 30}})
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: true })
+                                              }
+                                            ];
+                                          },
+                                          onMouseOut: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: () => {}
+                                              }, {
+                                                target: "labels",
+                                                mutation: () => ({ active: false })
+                                              }
+                                            ];
+                                          }
+                                        }
+                                      }]}
+            
                                     barWidth={({ index }) => 5}
                                     x="Utilization"
                                     y="Belt"
