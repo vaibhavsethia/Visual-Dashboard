@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React, { Component } from 'react'
 import './App.css';
 import 'tachyons'
@@ -17,7 +19,7 @@ export class App extends Component {
   
     this.state = {
       //Data in Million
-       PageState:'HomeN',
+       PageState:'IGI',
        IGI:69,     //New Delhi
        CSMI:48,    //Mumbai
        NSBI:21,    //Kolkata
@@ -193,7 +195,7 @@ export class App extends Component {
                                                         return [
                                                           {
                                                             target: "data",
-                                                            mutation: () => ({style: {fill: "gold", width: 30}})
+                                                            mutation: () => ({style: {fill: "gray", width: 30}})
                                                           }, {
                                                             target: "labels",
                                                             mutation: () => ({ active: true })
