@@ -26,18 +26,18 @@ export class Vending extends Component {
     render() {
         const {Month1,Month2,Month3,Month4,Month5,Month6,Month7,Month8,Month9,Month10,Month11,Month12}=this.state;
         const data2 = [
-            {Month:"1" , Belt: parseInt(Month1),label:Month1+"%"},
-            {Month:"2" , Belt: parseInt(Month2),label:Month2+"%"},
-            {Month:"3" , Belt: parseInt(Month3),label:Month3+"%"},
-            {Month:"4" , Belt: parseInt(Month4),label:Month4+"%"},
-            {Month:"5" , Belt: parseInt(Month5),label:Month5+"%"},
-            {Month:"6" , Belt: parseInt(Month6),label:Month6+"%"},
-            {Month:"7" , Belt: parseInt(Month7),label:Month7+"%"},
-            {Month:"8" , Belt: parseInt(Month8),label:Month8+"%"},
-            {Month:"9" , Belt: parseInt(Month9),label:Month9+"%"},
-            {Month: "10" , Belt: parseInt(Month10),label:Month10+"%"},
-            {Month: "11" , Belt: parseInt(Month11),label:Month11+"%"},
-            {Month: "12" , Belt: parseInt(Month12),label:Month12+"%"},
+            {Month:"1" , Vending: parseInt(Month1),label:Month1+"%"},
+            {Month:"2" , Vending: parseInt(Month2),label:Month2+"%"},
+            {Month:"3" , Vending: parseInt(Month3),label:Month3+"%"},
+            {Month:"4" , Vending: parseInt(Month4),label:Month4+"%"},
+            {Month:"5" , Vending: parseInt(Month5),label:Month5+"%"},
+            {Month:"6" , Vending: parseInt(Month6),label:Month6+"%"},
+            {Month:"7" , Vending: parseInt(Month7),label:Month7+"%"},
+            {Month:"8" , Vending: parseInt(Month8),label:Month8+"%"},
+            {Month:"9" , Vending: parseInt(Month9),label:Month9+"%"},
+            {Month: "10" , Vending: parseInt(Month10),label:Month10+"%"},
+            {Month: "11" , Vending: parseInt(Month11),label:Month11+"%"},
+            {Month: "12" , Vending: parseInt(Month12),label:Month12+"%"},
           ];
         return (
             <div>
@@ -48,7 +48,7 @@ export class Vending extends Component {
                     </p>
                     <div className="fl w-70 pl3 tc">
                         <VictoryChart 
-                            domainPadding={40} 
+                            domainPadding={20} 
                             theme={VictoryTheme.material} 
                             animate={{duration: 2000}}
                             style={{ parent: { maxWidth: "100%" } }}>
@@ -70,7 +70,7 @@ export class Vending extends Component {
                                             return [
                                               {
                                                 target: "data",
-                                                mutation: () => ({style: {fill: "gold", width: 30}})
+                                                mutation: () => ({style: {fill: "gray", width: 30}})
                                               }, {
                                                 target: "labels",
                                                 mutation: () => ({ active: true })
@@ -92,8 +92,8 @@ export class Vending extends Component {
                                       }]}
             
                                     barWidth={({ index }) => 5}
-                                    x="Utilization"
-                                    y="Belt"
+                                    x="Month"
+                                    y="Vending"
                                 />
                             </VictoryChart>
                     </div>
