@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React, { Component } from 'react'
 import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme,VictoryTooltip} from 'victory'
 import './StylesN.css'
@@ -19,7 +21,7 @@ export class Washroom extends Component {
             UtilWashroom2:50,
             UtilWashroom3:75,
             UtilWashroom4:60,
-            UtilWashroom5:75,
+            UtilWashroom5:45,
             UtilWashroom6:90,
         }
     }
@@ -61,7 +63,7 @@ export class Washroom extends Component {
                                 return [
                                   {
                                     target: "data",
-                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                    mutation: () => ({style: {fill: "gray", width: 30}})
                                   }, {
                                     target: "labels",
                                     mutation: () => ({ active: true })
@@ -133,10 +135,11 @@ export class Washroom extends Component {
                             </div>
                         </div>
                     </div>
+                    
+                    <div className="fl w-70 pl3 tc">
                     <p className="f3 pa2 tc mb1">
                     Percentage Utilization of each Washroom at IGI Airport is as follows: 
                     </p>
-                    <div className="fl w-70 pl3 tc">
                         <VictoryChart 
                             domainPadding={20} 
                             theme={VictoryTheme.material} 
@@ -159,7 +162,7 @@ export class Washroom extends Component {
                                             return [
                                               {
                                                 target: "data",
-                                                mutation: () => ({style: {fill: "gold", width: 30}})
+                                                mutation: () => ({style: {fill: "gray", width: 30}})
                                               }, {
                                                 target: "labels",
                                                 mutation: () => ({ active: true })
