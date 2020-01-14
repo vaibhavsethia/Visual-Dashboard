@@ -1,9 +1,11 @@
+/*eslint-disable */
+
 import React, { Component } from 'react'
 import {VictoryPie,VictoryTooltip} from 'victory'
 import './StylesN.css'
 import './BeltStyle.css'
 
-export class Lounge extends Component {
+export class Lounges extends Component {
     constructor(props) {
         super(props)
     
@@ -44,10 +46,11 @@ export class Lounge extends Component {
             <div>
                 <p className="f2 tc mb1">Indira Gandhi International Airport</p>
                 <p className="f4 tc mt1">New Delhi</p>
-                <p className="f3 pa2 tc mb1">
-                    Comparison among the Normal Lounges used at IGI Airport is as follows: 
-                </p>
+                
                 <div className="fl w-60 pa3 f4">
+                <p className="f3 pa2 tc mb1">
+                    Comparison among the Normal ss used at IGI Airport is as follows: 
+                </p>
                     <VictoryPie 
                         labelComponent={<VictoryTooltip
                             cornerRadius={20}
@@ -60,7 +63,7 @@ export class Lounge extends Component {
                                 return [
                                   {
                                     target: "data",
-                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                    mutation: () => ({style: {fill: "gray", width: 30}})
                                   }, {
                                     target: "labels",
                                     mutation: () => ({ active: true })
@@ -135,11 +138,39 @@ export class Lounge extends Component {
             
                     </div>
                     <div>  
+                        
+                        <div className="fl w-60 pa3 f4">
                         <p className="f3 tc mb1">
                             Comparison among the VIP Lounges used at IGI Airport is as follows: 
                         </p>
-                        <div className="fl w-60 pa3 f4">
                             <VictoryPie 
+                                events={[{
+                                    target: "data",
+                                    eventHandlers: {
+                                      onMouseOver: () => {
+                                        return [
+                                          {
+                                            target: "data",
+                                            mutation: () => ({style: {fill: "gray", width: 30}})
+                                          }, {
+                                            target: "labels",
+                                            mutation: () => ({ active: true })
+                                          }
+                                        ];
+                                      },
+                                      onMouseOut: () => {
+                                        return [
+                                          {
+                                            target: "data",
+                                            mutation: () => {}
+                                          }, {
+                                            target: "labels",
+                                            mutation: () => ({ active: false })
+                                          }
+                                        ];
+                                      }
+                                    }
+                                  }]}
                                 data={data2}
                                 labelComponent={<VictoryTooltip
                                     cornerRadius={20}
@@ -193,4 +224,4 @@ export class Lounge extends Component {
     }
 }
 
-export default Lounge
+export default Lounges
