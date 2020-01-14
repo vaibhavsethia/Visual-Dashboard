@@ -1,7 +1,9 @@
+/*eslint-disable*/
 import React, { Component } from 'react'
 import {VictoryPie,VictoryAxis,VictoryBar,VictoryChart,VictoryTheme,VictoryTooltip} from 'victory'
 import './StylesN.css'
 import './BeltStyle.css'
+import 'tachyons'
 
 export class ATM extends Component {
     constructor(props) {
@@ -10,15 +12,25 @@ export class ATM extends Component {
         this.state = {
             Total:28,
             ATM1:3,
-            ATM2:6,
-            ATM3:8,
-            ATM4:6,
-            ATM5:5,
+            ATM2:1,
+            ATM3:2,
+            ATM4:3,
+            ATM5:1,
+            ATM6:4,
+            ATM7:3,
+            ATM8:5,
+            ATM9:2,
+            ATM10:6,
             UtilATM1:20,
             UtilATM2:50,
             UtilATM3:75,
             UtilATM4:60,
-            UtilATM5:75,
+            UtilATM5:57,
+            UtilATM6:24,
+            UtilATM7:30,
+            UtilATM8:55,
+            UtilATM9:70,
+            UtilATM10:25,
         }
     }
     render() {
@@ -29,6 +41,11 @@ export class ATM extends Component {
             {x: parseFloat(ATM3*100/Total).toFixed(2) , y: parseInt(ATM3),label:"ATM3"+"-"+ATM3+"M"},
             {x: parseFloat(ATM4*100/Total).toFixed(2) , y: parseInt(ATM4),label:"ATM4"+"-"+ATM4+"M"},
             {x: parseFloat(ATM5*100/Total).toFixed(2) , y: parseInt(ATM5),label:"ATM5"+"-"+ATM5+"M"},
+            {x: parseFloat(ATM6*100/Total).toFixed(2) , y: parseInt(ATM6),label:"ATM6"+"-"+ATM6+"M"},
+            {x: parseFloat(ATM7*100/Total).toFixed(2) , y: parseInt(ATM7),label:"ATM7"+"-"+ATM7+"M"},
+            {x: parseFloat(ATM8*100/Total).toFixed(2) , y: parseInt(ATM8),label:"ATM8"+"-"+ATM8+"M"},
+            {x: parseFloat(ATM9*100/Total).toFixed(2) , y: parseInt(ATM9),label:"ATM9"+"-"+ATM9+"M"},
+            {x: parseFloat(ATM10*100/Total).toFixed(2) , y: parseInt(ATM10),label:"ATM10"+"-"+ATM10+"M"},
           ];
           const data2 = [
             {Utilization: parseFloat(UtilATM1*100/Total).toFixed(2) , ATM: parseInt(UtilATM1),label:UtilATM1+"%"},
@@ -36,6 +53,11 @@ export class ATM extends Component {
             {Utilization: parseFloat(UtilATM3*100/Total).toFixed(2) , ATM: parseInt(UtilATM3),label:UtilATM3+"%"},
             {Utilization: parseFloat(UtilATM4*100/Total).toFixed(2) , ATM: parseInt(UtilATM4),label:UtilATM4+"%"},
             {Utilization: parseFloat(UtilATM5*100/Total).toFixed(2) , ATM: parseInt(UtilATM5),label:UtilATM5+"%"},
+            {Utilization: parseFloat(UtilATM6*100/Total).toFixed(2) , ATM: parseInt(UtilATM6),label:UtilATM6+"%"},
+            {Utilization: parseFloat(UtilATM7*100/Total).toFixed(2) , ATM: parseInt(UtilATM7),label:UtilATM7+"%"},
+            {Utilization: parseFloat(UtilATM8*100/Total).toFixed(2) , ATM: parseInt(UtilATM8),label:UtilATM8+"%"},
+            {Utilization: parseFloat(UtilATM9*100/Total).toFixed(2) , ATM: parseInt(UtilATM9),label:UtilATM9+"%"},
+            {Utilization: parseFloat(UtilATM10*100/Total).toFixed(2) , ATM: parseInt(UtilATM10),label:UtilATM10+"%"},
           ];
         return (
             <div>
@@ -57,7 +79,7 @@ export class ATM extends Component {
                                 return [
                                   {
                                     target: "data",
-                                    mutation: () => ({style: {fill: "gold", width: 30}})
+                                    mutation: () => ({style: {fill: "grays", width: 30}})
                                   }, {
                                     target: "labels",
                                     mutation: () => ({ active: true })
@@ -122,22 +144,45 @@ export class ATM extends Component {
                                     <span className="Home-key-box Home-key-Box-five"></span>: ATM5
                                 </div>
                             </div>
+                            <div className="w-100 pa3 mr2 Key-hover">
+                                <div className="link black f4 " href="#" title="IGI Airport" >
+                                    <span className="Home-key-box Home-key-Box-one"></span>: ATM6
+                                </div>
+                            </div>
+                            <div className="w-100 pa3 mr2 Key-hover">
+                                <div className="link black f4  " href="#" title="CSMI Airport" >
+                                    <span className="Home-key-box Home-key-Box-two"></span>: ATM7
+                                </div>
+                            </div>
+                            <div className="w-100 pa3 mr2 Key-hover">
+                                <div className="link black f4 " href="#" title="IGI Airport" >
+                                    <span className="Home-key-box Home-key-Box-three"></span>: ATM8
+                                </div>
+                            </div>
+                            <div className="w-100 pa3 mr2 Key-hover">
+                                <div className="link black f4  " href="#" title="CSMI Airport" >
+                                    <span className="Home-key-box Home-key-Box-four"></span>: ATM9
+                                </div>
+                            </div>
+                            <div className="w-100 pa3 mr2 Key-hover">
+                                <div className="link black f4 " href="#" title="IGI Airport" >
+                                    <span className="Home-key-box Home-key-Box-five"></span>: ATM10
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                    <p className="f3 pa2 tc mb1">
+                    <div className="fl w-70 pl3 tc">
+                    <p className="f3 pa2 tc mb1 mt3">
                     Percentage Utilization of each ATMs at IGI Airport is as follows: 
                     </p>
-                    </div>
-                    <div className="fl w-70 pl3 tc">
                         <VictoryChart 
                             domainPadding={20} 
                             theme={VictoryTheme.material} 
                             animate={{duration: 2000}}
                             style={{ parent: { maxWidth: "100%" } }}>
                                 <VictoryAxis
-                                    tickValues={[1,2,3,4,5]}
-                                    tickFormat={["A1","A2","A3","A4","A5"]}
+                                    tickValues={[1,2,3,4,5,6,7,8,9,10]}
+                                    tickFormat={["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10"]}
                                 />
                                 <VictoryAxis
                                     dependentAxis
@@ -152,7 +197,7 @@ export class ATM extends Component {
                                             return [
                                               {
                                                 target: "data",
-                                                mutation: () => ({style: {fill: "gold", width: 30}})
+                                                mutation: () => ({style: {fill: "grays", width: 30}})
                                               }, {
                                                 target: "labels",
                                                 mutation: () => ({ active: true })
@@ -173,7 +218,7 @@ export class ATM extends Component {
                                         }
                                       }]}
             
-                                    barWidth={({ index }) => 10}
+                                    barWidth={({ index }) => 5}
                                     x="Utilization"
                                     y="ATM"
                                 />
