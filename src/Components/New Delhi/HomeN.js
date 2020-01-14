@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React, { Component } from 'react'
 import './StylesN.css'
 import BoardingGate from './BoardingGate'
@@ -147,7 +149,7 @@ export class HomeN extends Component {
                                                                                         return [
                                                                                           {
                                                                                             target: "data",
-                                                                                            mutation: () => ({style: {fill: "gold", width: 30}})
+                                                                                            mutation: () => ({style: {fill: "gray", width: 30}})
                                                                                           }, {
                                                                                             target: "labels",
                                                                                             mutation: () => ({ active: true })
